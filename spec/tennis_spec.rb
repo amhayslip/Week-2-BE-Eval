@@ -25,6 +25,42 @@ describe Tennis::Game do
       expect(game.player1.points).to eq(1)
     end
   end
+
+  describe '#game_play' do
+    context 'when one player has 4 points and the other has 5' do
+      it 'sets the leading players accolade to be advantage' do
+        4.times game.wins_ball(game.player1)
+        5.times game.wins_ball(game.player2)
+        game.game_play(game.player1, game.player2)
+
+        expect(game.player1.accolade).to eq('advantage')
+
+    end
+  end
+
+    context 'when both players scores are greater than 0 and tied' do
+      it 'sets both players accolade to deuce' do
+        2.times game.wins_ball(game.player1)
+        2.times game.wins_ball(game.player2)
+        game.game_play(game.player1, game.player2)
+
+        expect(game.player1.accolade).to eq('deuce')
+        expect(game.player1.accolade).to eq('deuce')
+
+    end
+  end
+
+    context 'when one players score is at least 4 and 2 great than his opponent' do
+      it 'sets the leading players accolade to win' do
+        5.times game.wins_ball(game.player1)
+        3.times game.wins_ball(game.player2)
+        game.game_play(game.player1, game.player2)
+
+        expect(game.player1.accolade).to eq('win')
+
+     end
+   end
+  end
 end
 
 describe Tennis::Player do

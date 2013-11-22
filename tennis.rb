@@ -23,10 +23,11 @@ module Tennis
   end
 
   class Player 
-    attr_accessor :points, :opponent
+    attr_accessor :points, :opponent, :accolade
 
     def initialize
       @points = 0
+      @accolade = nil
     end
 
     # Increments the score by 1.
@@ -43,5 +44,11 @@ module Tennis
       return 'thirty' if @points == 2
       return 'forty' if @points == 3
     end
+
+    def game_play
+    end
+
+
+
   end
 end
