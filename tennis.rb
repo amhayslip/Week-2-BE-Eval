@@ -20,6 +20,24 @@ module Tennis
       # TODO: Think it's gross to pass an integer instead of a player object?
       # Then reimplement this method!
     end
+
+    def game_play(player1, player2)
+      if player1.points == 4 && player2.points == 5
+        player2.accolade = "advantage"
+
+      elsif player1.points >= 3 && player2.points >= 3 && player1.points == player2.points
+        player1.accolade = "deuce"
+        player2.accolade = "deuce"
+
+      elsif player1.points >= 4 && player2.points == player1.points - 2
+        player1.accolade = "win"
+      else
+        puts "hey"
+      end
+
+    end
+
+
   end
 
   class Player 
@@ -27,7 +45,6 @@ module Tennis
 
     def initialize
       @points = 0
-      @accolade = nil
     end
 
     # Increments the score by 1.
@@ -43,12 +60,20 @@ module Tennis
       return 'fifteen' if @points == 1
       return 'thirty' if @points == 2
       return 'forty' if @points == 3
+      return 'advantage' if @points == 4 && opponent.points == 5
     end
 
-    def game_play
-    end
+
 
 
 
   end
 end
+
+
+
+
+
+
+
+
