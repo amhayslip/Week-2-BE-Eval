@@ -17,10 +17,11 @@ module Tennis
     # Returns the score of the winning player. 
     def wins_ball(winner)
       winner.points = winner.points + 1
-      # TODO: Think it's gross to pass an integer instead of a player object?
-      # Then reimplement this method!
     end
 
+    # Set's a player's "accolade" according to the game's score.
+    #
+    # player1 and player2 - Represent player1 and player2
     def game_play(player1, player2)
       if player1.points == 4 && player2.points == 5
         player2.accolade = "advantage"
@@ -34,7 +35,6 @@ module Tennis
       else
         puts "hey"
       end
-
     end
 
 
@@ -62,10 +62,6 @@ module Tennis
       return 'forty' if @points == 3
       return 'advantage' if @points == 4 && opponent.points == 5
     end
-
-
-
-
 
   end
 end
