@@ -21,19 +21,19 @@ module Tennis
 
     # Set's a player's "accolade" according to the game's score.
     #
-    # player1 and player2 - Represent player1 and player2
+    # player1 and player2 - Represent player1 and player2e
     def game_play(player1, player2)
       if player1.points == 4 && player2.points == 5
-        player2.accolade = "advantage"
+        player2.state = "advantage"
 
       elsif player1.points >= 3 && player2.points >= 3 && player1.points == player2.points
-        player1.accolade = "deuce"
-        player2.accolade = "deuce"
+        player1.state = "deuce"
+        player2.state = "deuce"
 
       elsif player1.points >= 4 && player2.points == player1.points - 2
-        player1.accolade = "win"
+        player1.state = "win"
       else
-        puts "hey"
+        
       end
     end
 
@@ -41,7 +41,7 @@ module Tennis
   end
 
   class Player 
-    attr_accessor :points, :opponent, :accolade
+    attr_accessor :points, :opponent, :state
 
     def initialize
       @points = 0
