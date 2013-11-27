@@ -48,15 +48,56 @@ describe Tennis::Game do
     end
   end
 
-    context 'when one players score is at least 4 and 2 great than his opponent' do
-      it 'sets the leading players state to win' do
+    context 'when one players score is at least 4 and 2 greater than his opponent' do
+      it 'increments the winning players wins by 1' do
         5.times {game.wins_ball(game.player1)}
         3.times {game.wins_ball(game.player2)}
         game.game_play(game.player1, game.player2)
 
-        expect(game.player1.state).to eq('win')
+        expect(game.player1.wins).to eq(1)
      end
    end
+
+  describe '#check_sets'  do
+    context 'when one player wins at least 6 games and at least two more than his oppenent' do
+      it 'increment the winning players set wins by 1' do
+      5.times {game.wins_ball(game.player1)}
+      3.times {game.wins_ball(game.player2)}
+      game.game_play(game.player1, game.player2)
+      expect(game.player1.wins).to eq(1)
+
+      5.times {game.wins_ball(game.player1)}
+      3.times {game.wins_ball(game.player2)}
+      game.game_play(game.player1, game.player2)
+      expect(game.player1.wins).to eq(2)
+
+      5.times {game.wins_ball(game.player1)}
+      3.times {game.wins_ball(game.player2)}
+      game.game_play(game.player1, game.player2)
+      expect(game.player1.wins).to eq(3)
+
+      5.times {game.wins_ball(game.player1)}
+      3.times {game.wins_ball(game.player2)}
+      game.game_play(game.player1, game.player2)
+      expect(game.player1.wins).to eq(4)
+
+      5.times {game.wins_ball(game.player1)}
+      3.times {game.wins_ball(game.player2)}
+      game.game_play(game.player1, game.player2)
+      expect(game.player1.wins).to eq(5)
+
+      5.times {game.wins_ball(game.player1)}
+      3.times {game.wins_ball(game.player2)}
+      game.game_play(game.player1, game.player2)
+      expect(game.player1.wins).to eq(6)
+
+      game.check_sets(game.player1, game.player2)
+      expect(game.player1.set_wins).to eq(1)    
+      end
+    end
+  end
+
+
   end
 end
 

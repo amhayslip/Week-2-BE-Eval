@@ -21,7 +21,7 @@ module Tennis
 
     # Set's a player's "accolade" according to the game's score.
     #
-    # player1 and player2 - Represent player1 and player2e
+    # player1 and player2 - Represent player1 and player2
     def game_play(player1, player2)
       if player1.points == 4 && player2.points == 5
         player2.state = "advantage"
@@ -30,10 +30,17 @@ module Tennis
         player1.state = "deuce"
         player2.state = "deuce"
 
-      elsif player1.points >= 4 && player2.points == player1.points - 2
-        player1.state = "win"
+      elsif player1.points >= 4 && player2.points <= player1.points - 2
+        player1.wins += 1
       else
-        
+      end
+    end
+
+    # Increment's a player's set_wins by 1 if they win the needed number of games.
+    def check_sets(player1, player2)
+      if player1.wins >= 6 && player2.wins <= player1.wins - 2
+        player1.set_wins +=1 
+      else
       end
     end
 
@@ -41,10 +48,12 @@ module Tennis
   end
 
   class Player 
-    attr_accessor :points, :opponent, :state
+    attr_accessor :points, :opponent, :state, :wins, :set_wins
 
     def initialize
       @points = 0
+      @wins = 0
+      @set_wins = 0
     end
 
     # Increments the score by 1.
